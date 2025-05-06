@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="index.php">MyStore</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <?php if (isset($_SESSION['user_id'])) { ?>
+            <li class="nav-item"><a class="nav-link" href="profile.php"><?php echo $_SESSION['user_name']; ?></a></li>
+            <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
+        <?php } else { ?>
+            <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
+        <?php } ?>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- best electronic items -->
+<div class="container my-5">
+  <h4 class="mb-3">Best of Electronics</h4>
+  <div class="position-relative">
+    <button class="scroll-btn left" onclick="scrollLeft('electronics-scroll')">&#10094;</button>
+    <div class="d-flex overflow-auto hide-scrollbar" id="electronics-scroll">
+      <!-- Repeat this block for each product -->
+      <a href="category.php?category=smartwatches" class="text-decoration-none text-dark text-center mx-3">
+        <img src="./assets/images/smartwatch.jpg" class="img-fluid" style="max-height: 150px;">
+        <div>Noise Smartwatches</div>
+        <div class="fw-bold">From ₹1,099</div>
+      </a>
+      <a href="category.php?category=headphones" class="text-decoration-none text-dark text-center mx-3">
+        <img src="./assets/images/earbuds.jpg" class="img-fluid" style="max-height: 150px;">
+        <div>OnePlus Earbuds</div>
+        <div class="fw-bold">Grab Now</div>
+      </a>
+      <!-- Add more items here -->
+    </div>
+    <button class="scroll-btn right" onclick="scrollRight('electronics-scroll')">&#10095;</button>
+  </div>
+</div>

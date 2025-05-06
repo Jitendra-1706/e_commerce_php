@@ -1,0 +1,25 @@
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: white;
+    border: none;
+    font-size: 2rem;
+    z-index: 10;
+    cursor: pointer;
+  }
+  .scroll-btn.left {
+    left: 0;
+  }
+  .scroll-btn.right {
+    right: 0;
+  }
+  

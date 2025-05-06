@@ -1,0 +1,85 @@
+<?php include('admin_auth.php'); ?>
+<?php
+include '../includes/db_connect.php';
+include '../includes/header.php';
+
+// Fetch products
+$sql = "SELECT p.*, c.name AS category_name FROM products p 
+        LEFT JOIN categories c ON p.category_id = c.category_id 
+        ORDER BY p.created_at DESC";
+$result = mysqli_query($con, $sql);
+?>
+    <?php include '../includes/mode.php'; ?>
+
+<div class="d-flex">
+    <?php include '../includes/admin_sidebar.php'; ?>
+    <div class="flex-grow-1 p-4" style="margin-left: 250px;">
+        <div class="container mt-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2>Manage Products</h2>
+                <a href="add_product.php" class="btn btn-primary">Add New Product</a>
+            </div>
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($row = mysqli_fetch_assoc($result)): ?>
+                        <tr>
+                            <td><?= $row['product_id'] ?></td>
+                            <td><?= htmlspecialchars($row['name']) ?></td>
+                            <td><?= htmlspecialchars($row['category_name']) ?></td>
+                            <td>₹<?= number_format($row['price'], 2) ?></td>
+                            <td><?= $row['stock'] ?></td>
+
+                            <!-- Checking if the image exists -->
+                            <?php
+                            // Define the image path
+                            $imagePath = "../assets/images/" . htmlspecialchars($row['image']);
+
+                            // Check if the image exists
+                            $imageExists = file_exists($imagePath);
+                            ?>
+
+                            <td>
+                                <?php if ($imageExists): ?>
+                                    <img src="<?= $imagePath ?>" width="60" height="60" alt="Product Image">
+                                <?php else: ?>
+                                    <span class="text-danger">Missing Image</span>
+                                <?php endif; ?>
+                            </td>
+
+                            <td>
+                                <a href="edit_product.php?id=<?= $row['product_id'] ?>" class="btn btn-sm btn-warning">Edit</a>
+                                <a href="delete_product.php?id=<?= $row['product_id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this product?');">Delete</a>
+                            </td>
+                        </tr>
+                    <?php endwhile; ?>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+
+    if (localStorage.getItem("primaryColor")) {
+        document.documentElement.style.setProperty('--primary-color', localStorage.getItem("primaryColor"));
+    }
+</script>
+
+<?php include '../includes/footer.php'; ?>
