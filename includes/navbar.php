@@ -7,7 +7,7 @@ if (session_status() === PHP_SESSION_NONE) {
   <div class="container-fluid">
     <!-- LOGO -->
     <a class="navbar-brand" href="../E_commerce/index.php">
-    <img src="../assets/images/logos/logo2.png" alt="logo" style="height: 40px;">
+    <img src="/E_commerce/assets/images/logos/logo2.png" alt="logo" style="height: 40px;">
     </a>
     <!-- TOGGLER -->
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
@@ -49,11 +49,10 @@ $category_result = mysqli_query($con, $category_query);
       </ul>
 
       <!-- RIGHT: Search -->
-      <form class="d-flex flex-grow-1 mx-3" role="search">
-        <input class="form-control me-2 w-100" style="max-width: 600px;" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
-
+      <form class="d-flex flex-grow-1 mx-3" role="search" method="GET" action="/E_commerce/search.php">
+    <input class="form-control me-2 w-100" style="max-width: 600px;" type="search" name="q" placeholder="Search" aria-label="Search" required>
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
 
       <!-- User Dropdown -->
       <ul class="navbar-nav mb-2 mb-lg-0 me-3">

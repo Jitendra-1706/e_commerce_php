@@ -11,6 +11,8 @@ include 'includes/db_connect.php';
     <?php include 'includes/header.php'; ?>
     <link rel="shortcut icon" href="./assets/images/pngwing.com (3).png" type="image/x-icon">
     <link rel="stylesheet" href="./assets/css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <script>
     function scrollLeft(containerId) {
