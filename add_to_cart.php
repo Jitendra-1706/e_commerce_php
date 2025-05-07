@@ -7,11 +7,13 @@ if (!isset($_GET['id'])) {
     exit();
 }
 
-$product_id = $_GET['id'];
+$product_id = (int)$_GET['id'];
 
-// Fetch product
-$sql = "SELECT * FROM products WHERE product_id = $product_id";
-$result = $con->query($sql);
+$sql = "SELECT * FROM products WHERE product_id = ?";
+$stmt = $con->prepare($sql);
+$stmt->bind_param("i", $product_id);
+$stmt->execute();
+$result = $stmt->get_result();
 
 if ($result->num_rows == 0) {
     header("Location: index.php");
@@ -20,7 +22,7 @@ if ($result->num_rows == 0) {
 
 $product = $result->fetch_assoc();
 
-// Add to cart session
+// Start cart session
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
 }
@@ -31,7 +33,7 @@ if (isset($_SESSION['cart'][$product_id])) {
     $_SESSION['cart'][$product_id] = [
         'name' => $product['name'],
         'price' => $product['price'],
-        'image' => $product['image'],
+        'image' => basename($product['image']), // Just filename
         'quantity' => 1
     ];
 }

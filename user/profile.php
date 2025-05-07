@@ -37,6 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
     <title>Profile</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../assets/images/logos/logo2.png" type="image/x-icon">
+
 </head>
 <body>
 <div class="container mt-5">

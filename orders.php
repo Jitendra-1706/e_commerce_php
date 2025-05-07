@@ -1,54 +1,64 @@
 <?php
 session_start();
-include 'db_connect.php';
+include 'includes/db_connect.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header("Location: login.php");
     exit;
 }
 
 $user_id = $_SESSION['user_id'];
-$orders = [];
 
-$order_stmt = $con->prepare("SELECT id, created_at, status FROM orders WHERE user_id = ? ORDER BY created_at DESC");
-$order_stmt->bind_param("i", $user_id);
-$order_stmt->execute();
-$order_result = $order_stmt->get_result();
-
-while ($order = $order_result->fetch_assoc()) {
-    $order_id = $order['id'];
-    $items_stmt = $con->prepare("
-        SELECT p.name, p.price, oi.quantity
-        FROM order_items oi
-        JOIN products p ON oi.product_id = p.id
-        WHERE oi.order_id = ?");
-    $items_stmt->bind_param("i", $order_id);
-    $items_stmt->execute();
-    $items_result = $items_stmt->get_result();
-    $order['items'] = $items_result->fetch_all(MYSQLI_ASSOC);
-    $orders[] = $order;
-}
+$stmt = $con->prepare("SELECT order_id, total_price, payment_method, status, order_date FROM orders WHERE user_id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>My Orders</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="./assets/images/logos/logo2.png" type="image/x-icon">
+
 </head>
-<body class="bg-light">
+<body>
+    <?php include 'includes/navbar.php'; ?>
+
     <div class="container mt-5">
-        <h2>Order History</h2>
-        <?php foreach ($orders as $order): ?>
-            <div class="card mb-3 p-3">
-                <h5>Order #<?= $order['id'] ?> | <?= $order['created_at'] ?> | Status: <?= $order['status'] ?></h5>
-                <ul>
-                    <?php foreach ($order['items'] as $item): ?>
-                        <li><?= htmlspecialchars($item['name']) ?> x <?= $item['quantity'] ?> – ₹<?= $item['price'] * $item['quantity'] ?></li>
-                    <?php endforeach; ?>
-                </ul>
+        <h2 class="mb-4">My Orders</h2>
+        <?php if ($result->num_rows > 0): ?>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Total Price</th>
+                            <th>Payment Method</th>
+                            <th>Status</th>
+                            <th>Order Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($row = $result->fetch_assoc()): ?>
+                            <tr>
+                                <td><?= $row['order_id'] ?></td>
+                                <td>₹<?= number_format($row['total_price'], 2) ?></td>
+                                <td><?= htmlspecialchars($row['payment_method']) ?></td>
+                                <td><?= htmlspecialchars($row['status']) ?></td>
+                                <td><?= $row['order_date'] ?></td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
             </div>
-        <?php endforeach; ?>
+        <?php else: ?>
+            <div class="alert alert-info">You have not placed any orders yet.</div>
+        <?php endif; ?>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

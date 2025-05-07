@@ -6,9 +6,10 @@ include 'includes/db_connect.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Your Cart - MyStore</title>
+    <title>Your Cart</title>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <?php include 'includes/header.php'; ?>
+    <link rel="shortcut icon" href="./assets/images/logos/logo2.png" type="image/x-icon">
 
 </head>
 <body>
@@ -17,8 +18,9 @@ include 'includes/db_connect.php';
 
 <div class="container mt-5">
     <h2>Your Shopping Cart</h2>
+
     <?php if (empty($_SESSION['cart'])): ?>
-        <p>Your cart is empty. <a href="index.php">Shop now</a></p>
+        <div class="alert alert-info">Your cart is empty. <a href="index.php">Shop now</a></div>
     <?php else: ?>
         <table class="table table-bordered mt-4">
             <thead class="table-dark">
@@ -39,8 +41,8 @@ include 'includes/db_connect.php';
                     $grandTotal += $subtotal;
                 ?>
                 <tr>
-                    <td><img src="assets/images/<?php echo $item['image']; ?>" width="50"></td>
-                    <td><?php echo $item['name']; ?></td>
+                    <td><img src="assets/images/<?php echo htmlspecialchars($item['image']); ?>" width="60" height="60" style="object-fit:cover;"></td>
+                    <td><?php echo htmlspecialchars($item['name']); ?></td>
                     <td>₹<?php echo number_format($item['price'], 2); ?></td>
                     <td><?php echo $item['quantity']; ?></td>
                     <td>₹<?php echo number_format($subtotal, 2); ?></td>
@@ -53,41 +55,11 @@ include 'includes/db_connect.php';
                 </tr>
             </tbody>
         </table>
-        <a href="./user/checkout.php" class="btn btn-primary">Proceed to Checkout</a>
+        <a href="user/checkout.php" class="btn btn-primary">Proceed to Checkout</a>
     <?php endif; ?>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<?php include './includes/footer.php' ?>
-
+<?php include 'includes/footer.php'; ?>
 <script src="assets/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

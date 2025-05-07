@@ -27,6 +27,8 @@ $wishlist = $conn->query("SELECT p.* FROM wishlist w JOIN products p ON w.produc
 <head>
     <title>Wishlist</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="../assets/images/logos/logo2.png" type="image/x-icon">
+
 </head>
 <body>
 <div class="container mt-5">

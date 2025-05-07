@@ -3,6 +3,15 @@ if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 ?>
+
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+$base_url = "/E_commerce/";
+?>
+
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary px-3 shadow-sm">
   <div class="container-fluid">
     <!-- LOGO -->
@@ -54,32 +63,32 @@ $category_result = mysqli_query($con, $category_query);
     <button class="btn btn-outline-success" type="submit">Search</button>
 </form>
 
-      <!-- User Dropdown -->
-      <ul class="navbar-nav mb-2 mb-lg-0 me-3">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" data-bs-toggle="dropdown">
-            <i class='bx bx-user-circle' style="font-size: 24px;"></i>
-            <span class="ms-1">
-              <?php echo isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'Login'; ?>
-            </span>
-          </a>
-          <ul class="dropdown-menu dropdown-menu-end">
-            <?php if (isset($_SESSION['user_id'])): ?>
-              <li><a class="dropdown-item" href="../profile.php">My Profile</a></li>
-              <li><a class="dropdown-item" href="../orders.php">Orders</a></li>
-              <li><a class="dropdown-item" href="../wishlist.php">Wishlist</a></li>
-              <li><a class="dropdown-item" href="../cart.php">Cart</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item text-danger" href="logout.php">Logout</a></li>
-            <?php else: ?>
-              <li><a class="dropdown-item" href="login.php">Login</a></li>
-              <li><a class="dropdown-item" href="login.php">Sign Up</a></li>
-            <?php endif; ?>
-          </ul>
-        </li>
-      </ul>
+<!-- User Dropdown -->
+<ul class="navbar-nav mb-2 mb-lg-0 me-3">
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" data-bs-toggle="dropdown">
+      <i class='bx bx-user-circle' style="font-size: 24px;"></i>
+      <span class="ms-1">
+        <?= isset($_SESSION['user_name']) ? htmlspecialchars($_SESSION['user_name']) : 'Login'; ?>
+      </span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end">
+      <?php if (isset($_SESSION['user_id'])): ?>
+        <li><a class="dropdown-item" href="<?= $base_url ?>profile.php">My Profile</a></li>
+        <li><a class="dropdown-item" href="<?= $base_url ?>orders.php">Orders</a></li>
+        <li><a class="dropdown-item" href="<?= $base_url ?>wishlist.php">Wishlist</a></li>
+        <li><a class="dropdown-item" href="<?= $base_url ?>cart.php">Cart</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item text-danger" href="<?= $base_url ?>logout.php">Logout</a></li>
+      <?php else: ?>
+        <li><a class="dropdown-item" href="<?= $base_url ?>login.php">Login</a></li>
+        <li><a class="dropdown-item" href="<?= $base_url ?>login.php">Sign Up</a></li>
+      <?php endif; ?>
+    </ul>
+  </li>
+</ul>
+
+
 
       <!-- Cart -->
       <a href="cart.php" class="btn position-relative">

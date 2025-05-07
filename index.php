@@ -6,14 +6,13 @@ include 'includes/db_connect.php';
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Home - MyStore</title>
+    <title>Home - Unicart</title>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <?php include 'includes/header.php'; ?>
     <link rel="shortcut icon" href="./assets/images/pngwing.com (3).png" type="image/x-icon">
     <link rel="stylesheet" href="./assets/css/index.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
+<link rel="shortcut icon" href="./assets/images/logos/logo2.png" type="image/x-icon">
     <script>
     function scrollLeft(containerId) {
         const container = document.getElementById(containerId);
