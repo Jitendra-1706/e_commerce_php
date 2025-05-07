@@ -26,7 +26,13 @@ $order_query = $con->query("SELECT * FROM orders WHERE user_id = $user_id ORDER 
 
 </head>
 <body>
-<div class="container mt-5">
+
+
+<div class="d-flex">
+    <?php include '../includes/admin_sidebar.php'; ?>
+    <div class="flex-grow-1 p-4" style="margin-left: 250px;">
+        <!-- Your main content goes here -->
+        <div class="container mt-5">
     <h2>Orders for <strong><?= htmlspecialchars($user['name']) ?></strong></h2>
     <a href="users.php" class="btn btn-secondary mb-3">← Back to Users</a>
 
@@ -59,6 +65,10 @@ $order_query = $con->query("SELECT * FROM orders WHERE user_id = $user_id ORDER 
         <div class="alert alert-info">This user has not placed any orders.</div>
     <?php endif; ?>
 </div>
+    </div>
+</div>
+
+
 
 
 
