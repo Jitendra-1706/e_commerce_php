@@ -23,6 +23,8 @@ $order_query = $con->query("SELECT * FROM orders WHERE user_id = $user_id ORDER 
     <title>Orders for <?= htmlspecialchars($user['name']) ?></title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css">
     <?php include '../includes/mode.php'; ?>
+    <link rel="stylesheet" href="../assets/css/admin_bar.css">
+
 
 </head>
 <body>

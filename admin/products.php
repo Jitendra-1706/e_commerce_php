@@ -11,6 +11,7 @@ $sql = "SELECT p.*, c.name AS category_name
 $result = mysqli_query($con, $sql);
 ?>
 <?php include '../includes/mode.php'; ?>
+<link rel="stylesheet" href="../assets/css/admin_bar.css">
 
 <div class="d-flex">
     <?php include '../includes/admin_sidebar.php'; ?>

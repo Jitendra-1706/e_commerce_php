@@ -60,6 +60,7 @@ $categories = $con->query("SELECT * FROM categories");
     <title>Add Product</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <?php include '../includes/mode.php'; ?>
+    <link rel="stylesheet" href="../assets/css/admin_bar.css">
     
 </head>
 <body class="bg-light">

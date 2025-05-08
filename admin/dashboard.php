@@ -3,6 +3,7 @@
 <?php include('admin_auth.php'); ?>
 <?php include '../includes/mode.php'; ?>
 
+<link rel="stylesheet" href="../assets/css/admin_bar.css">
 
 <div class="dashboard">
     <h1>Unicart Admin Dashboard</h1>

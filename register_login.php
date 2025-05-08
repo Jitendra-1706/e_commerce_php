@@ -9,7 +9,7 @@ if (isset($_POST['register'])) {
     $password = password_hash($_POST['reg_password'], PASSWORD_DEFAULT);
 
     // Check if email already exists
-    $check = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $check = $con->prepare("SELECT * FROM users WHERE email = ?");
     $check->bind_param("s", $email);
     $check->execute();
     $result = $check->get_result();
@@ -19,7 +19,7 @@ if (isset($_POST['register'])) {
         header("Location: login.php");
         exit();
     } else {
-        $stmt = $conn->prepare("INSERT INTO users (name, email, password, created_at) VALUES (?, ?, ?, NOW())");
+        $stmt = $con->prepare("INSERT INTO users (name, email, password, created_at) VALUES (?, ?, ?, NOW())");
         $stmt->bind_param("sss", $name, $email, $password);
         if ($stmt->execute()) {
             $_SESSION['success'] = "Registered successfully! Please login.";

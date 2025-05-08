@@ -29,6 +29,8 @@ $result = $con->query($query);
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <?php include '../includes/mode.php'; ?>
+<link rel="stylesheet" href="../assets/css/admin_bar.css">
+
 
 <div class="d-flex">
     <?php include '../includes/admin_sidebar.php'; ?>

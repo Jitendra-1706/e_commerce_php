@@ -50,6 +50,8 @@ $result = $con->query($query);
     <title>Categories - Unicart Admin</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <?php include '../includes/mode.php'; ?>
+    <link rel="stylesheet" href="../assets/css/admin_bar.css">
+
 
 </head>
 <body>
