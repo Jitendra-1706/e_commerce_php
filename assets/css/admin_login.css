@@ -1,234 +1,233 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 
-* {
+/*===== VARIABLES CSS =====*/
+
+/*=== Colores ===*/
+:root{
+    --first-color: #12192C;
+    --text-color: #8590AD;
+}
+
+/*=== Fuente y tipografia ===*/
+:root{
+    --body-font: 'Roboto', sans-serif;
+    --big-font-size: 2rem;
+    --normal-font-size: 0.938rem;
+    --smaller-font-size: 0.875rem;
+}
+@media screen and (min-width: 768px){
+    :root{
+        --big-font-size: 2.5rem;
+        --normal-font-size: 1rem;
+    }  
+}
+
+/*===== BASE =====*/
+*,::before,::after{
+    box-sizing: border-box;
+}
+body{
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: var(--body-font);
+    color: var(--first-color);
+}
+h1{
+    margin: 0;
+}
+a{
+    text-decoration: none;
+}
+img{
+    max-width: 100%;
+    height: auto;
+}
+/*===== FORM =====*/
+.l-form{
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
 }
 
-body {
-    display: flex;
+/*=== Shapes ===*/
+.shape1,
+.shape2{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+.shape1{
+    top: -7rem;
+    left: -3.5rem;
+    background: linear-gradient(180deg, var(--first-color) 0%, rgba(196,196,196,0) 100%);
+}
+.shape2{
+    bottom: -6rem;
+    right: -5.5rem;
+    background: linear-gradient(180deg, var(--first-color) 0%, rgba(196,196,196,0) 100%);
+    transform: rotate(180deg);
+}
+/*=== Form ===*/
+.form{
+    height: 100vh;
+    display: grid;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    background: #081b29;
+    padding: 0 1rem;
 }
-
-.wrapper {
+.form__content{
+    width: 290px;
+}
+.form__img{
+    display: none;
+}
+.form__title{
+    font-size: var(--big-font-size);
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+.form__div{
     position: relative;
-    width: 750px;
-    height: 450px;
-    background: transparent;
-    border: 2px solid #0ef;
-    box-shadow: 0 0 25px #0ef;
-    overflow: hidden;
+    display: grid;
+    grid-template-columns: 7% 93%;
+    margin-bottom: 1rem;
+    padding: .25rem 0;
+    border-bottom: 1px solid var(--text-color);
+}
+/*=== Div focus ===*/
+.form__div.focus{
+    border-bottom: 1px solid var(--first-color);
 }
 
-.wrapper .form-box {
+.form__div-one{
+    margin-bottom: 3rem;
+}
+
+.form__icon{
+    font-size: 1.5rem;
+    color: var(--text-color);
+    transition: .3s;
+}
+/*=== Icon focus ===*/
+.form__div.focus .form__icon{
+    color: var(--first-color);
+}
+
+.form__label{
+    display: block;
+    position: absolute;
+    left: .75rem;
+    top: .25rem;
+    font-size: var(--normal-font-size);
+    color: var(--text-color);
+    transition: .3s;
+}
+/*=== Label focus ===*/
+.form__div.focus .form__label{
+    top: -1.5rem;
+    font-size: .875rem;
+    color: var(--first-color);
+}
+
+.form__div-input{
+    position: relative;
+}
+.form__input{
     position: absolute;
     top: 0;
-    width: 50%;
-    height: 100%;
-    /* background: red; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.wrapper .form-box.login {
     left: 0;
-    padding: 0 60px 0 40px;
-    /* display: none; */
-}
-
-
-
-.wrapper .form-box.register {
-    right: 0;
-    padding: 0 40px 0 60px;
-    /* display: none; */
-}
-
-/* .form-box.register form {
-    padding-top: 15px;
-    padding-bottom: 15px;
-} */
-
-
-
-.form-box h2 {
-    font-size: 32px;
-    color: #fff;
-    text-align: center;
-}
-
-.form-box .input-box {
-    position: relative;
-    width: 100%;
-    height: 50px;
-    margin: 25px 0;
-
-}
-
-.input-box input {
     width: 100%;
     height: 100%;
-    background: transparent;
     border: none;
     outline: none;
-    border-bottom: 2px solid #fff;
-    font-size: 16px;
-    color: #fff;
-    font-weight: 500;
-    padding-right: 23px;
-    transition: .5s;
+    background: none;
+    padding: .5rem .75rem;
+    font-size: 1.2rem;
+    color: var(--first-color);
+    transition: .3s;
 }
-
-.input-box input:focus,
-.input-box input:valid {
-    border-bottom-color: #0ef;
-}
-
-.input-box label {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    font-size: 16px;
-    color: #fff;
-    pointer-events: none;
-    transition: .5s;
-}
-
-.input-box input:focus~label,
-.input-box input:valid~label {
-    top: -5px;
-    color: #0ef;
-
-}
-
-.input-box i {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    font-size: 18px;
-    color: #fff;
-    transition: .5s;
-}
-
-.input-box input:focus~i,
-.input-box input:valid~i {
-    color: #0ef;
-}
-
-.btn {
-    position: relative;
-    width: 100%;
-    height: 45px;
-    background: transparent;
-    border: 2px solid #0ef;
-    outline: none;
-    border-radius: 40px;
-    cursor: pointer;
-    font-size: 16px;
-    color: #fff;
-    font-weight: 600;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.btn::before {
-    content: '';
-    position: absolute;
-    top: -100%;
-    left: 0;
-    width: 100%;
-    height: 300%;
-    background: linear-gradient(#081b20, #0ef, #081b29, #0ef);
-    z-index: -1;
-    transition: .5s;
-}
-
-.btn:hover::before {
-    top: 0;
-}
-
-.form-box .logreg-link {
-    font-size: 14.5px;
-    color: #fff;
-    text-align: center;
-    margin: 20px 0 10px;
-}
-
-.logreg-link p a {
-    color: #0ef;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.logreg-link p a:hover {
-    text-decoration: underline;
-}
-
-.wrapper .info-text {
-    position: absolute;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    /* background: red; */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-}
-
-.wrapper .info-text.login {
-    right: 0;
+.form__forgot{
+    display: block;
     text-align: right;
-    padding: 0 40px 60px 150px;
-    /* display: none; */
+    margin-bottom: 2rem;
+    font-size: var(--normal-font-size);
+    color: var(--text-color);
+    font-weight: 500;
+    transition: .5;
 }
-
-
-.wrapper .info-text.register {
-    left: 0;
-    text-align: left;
-    padding: 0 150px 60px 40px;
-    pointer-events: none;
-    /* display: none; */
+.form__forgot:hover{
+    color: var(--first-color);
+    transition: .5s;
 }
-
-.info-text h2 {
-    font-size: 36px;
+.form__button{
+    width: 100%;
+    padding: 1rem;
+    font-size: var(--normal-font-size);
+    outline: none;
+    border: none;
+    margin-bottom: 3rem;
+    background-color: var(--first-color);
     color: #fff;
-    line-height: 1.3;
-    text-transform: uppercase;
-
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: .3s;
+}
+.form__button:hover{
+    box-shadow: 0px 15px 36px rgba(0,0,0,.15);
 }
 
-.info-text p {
-    font-size: 16px;
+/*=== Form social===*/
+.form__social{
+    text-align: center;
+}
+.form__social-text{
+    display: block;
+    font-size: var(--normal-font-size);
+    margin-bottom: 1rem;
+}
+.form__social-icon{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    margin-right: 1rem;
+    padding: .5rem;
+    background-color: var(--text-color);
     color: #fff;
+    font-size: 1.25rem;
+    border-radius: 50%;
 }
-
-.wrapper .bg-animate {
-    position: absolute;
-    top: -4px;
-    right: 0;
-    width: 850px;
-    height: 600px;
-    background: linear-gradient(45deg, #081b29, #0ef);
-    border-bottom: 3px solid #0ef;
-    transform: rotate(10deg) skewY(40deg);
-    transform-origin: bottom right;
-    transition: 1.5s ease;
-    transition-delay: 1.6s;
+.form__social-icon:hover{
+    background-color: var(--first-color);
 }
+/*===== MEDIA QUERIS =====*/
+@media screen and (min-width: 968px){
+    .shape1{
+        width: 400px;
+        height: 400px;
+        top: -11rem;
+        left: -6.5rem;
+    }
+    .shape2{
+        width: 300px;
+        height: 300px;
+        right: -6.5rem;
+    }
 
-
-
-
-
+    .form{
+        grid-template-columns: 1.5fr 1fr;
+        padding: 0 2rem;
+    }
+    .form__content{
+        width: 320px;
+    }
+    .form__img{
+        display: block;
+        width: 700px;
+        justify-self: center;
+    }
+}
 

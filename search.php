@@ -31,7 +31,7 @@ if ($searchTerm !== '') {
                         <div class="card-body">
                             <h5 class="card-title"><?php echo htmlspecialchars($product['name']); ?></h5>
                             <p class="card-text">₹<?php echo number_format($product['price'], 2); ?></p>
-                            <a href="product_details.php?id=<?php echo $product['product_id']; ?>" class="btn btn-primary btn-sm">View</a>
+                            <a href="product.php?id=<?php echo $product['product_id']; ?>" class="btn btn-primary btn-sm">View</a>
                         </div>
                     </div>
                 </div>

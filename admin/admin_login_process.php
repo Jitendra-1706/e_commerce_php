@@ -2,46 +2,60 @@
 session_start();
 include '../includes/db_connect.php';  // Ensure the database connection is working
 
-// Check if the login form is submitted
-if (isset($_POST['login'])) {
-    // Get the input data from the form
-    $username = mysqli_real_escape_string($con, $_POST['username']);
-    $password = mysqli_real_escape_string($con, $_POST['password']);
+// Check if the form was submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username']);
+    $password = $_POST['password'];
 
-    // SQL query to find the admin by username
-    $sql = "SELECT * FROM admin WHERE username = '$username'";
-    $result = mysqli_query($con, $sql);
+    // Validate input
+    if (empty($username) || empty($password)) {
+        $_SESSION['error'] = "Username and password are required.";
+        header("Location: admin_login.php");
+        exit();
+    }
 
-    // Check if the query returned any result
-    if (mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
+    // SQL query to fetch admin from the database
+    $stmt = $con->prepare("SELECT * FROM admin WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    // Check if user exists and password matches
+    if ($result->num_rows > 0) {
+        $admin = $result->fetch_assoc();
+
+        // Debugging output
+        echo "Password entered: $password <br>";
+        echo "Stored password hash: " . $admin['password'] . "<br>";
+        echo "Password verification: " . (password_verify($password, $admin['password']) ? 'true' : 'false') . "<br>";
 
         // Check if the password matches the hashed password stored in the database
-        if (password_verify($password, $row['password'])) {
-            // Successful login: Set session variables
+        if (password_verify($password, $admin['password'])) {
+            // Successful login
             $_SESSION['admin_logged_in'] = true;
-            $_SESSION['admin_id'] = $row['admin_id'];  // Store the admin ID
-            $_SESSION['username'] = $row['username'];  // Optionally store the username
-
-            // Redirect to the admin dashboard or home page (index.php)
+            $_SESSION['admin_id'] = $admin['admin_id']; 
+            $_SESSION['admin_username'] = $admin['username']; 
             header("Location: index.php");
             exit();
         } else {
             // Incorrect password
-            $_SESSION['error'] = 'Invalid username or password.';
+            $_SESSION['error'] = "Invalid password.";
             header("Location: admin_login.php");
             exit();
         }
     } else {
         // Admin not found
-        $_SESSION['error'] = 'Invalid username or password.';
+        $_SESSION['error'] = "Invalid username or password.";
         header("Location: admin_login.php");
         exit();
     }
+
+    // Close the statement and connection
+    $stmt->close();
+    $con->close();
 } else {
-    // No login attempt made, redirect to login page
-    $_SESSION['error'] = 'Please login first.';
+    // No form submission
+    $_SESSION['error'] = "Please login first.";
     header("Location: admin_login.php");
     exit();
 }
-?>

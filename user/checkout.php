@@ -66,7 +66,7 @@ if ($check && $check->num_rows > 0) {
                 ?>
                 <div class="col-md-4 mb-3">
                     <div class="card">
-                        <img src="../assets/images/<?php echo htmlspecialchars($item['image']); ?>" class="card-img-top" style="height: 180px; object-fit:cover;">
+                        <img src="../assets/images/<?php echo htmlspecialchars($item['image']); ?>" class="card-img-top" style="height: 180px; object-fit:contain;">
                         <div class="card-body">
                             <h5><?php echo htmlspecialchars($item['name']); ?></h5>
                             <p>Price: ₹<?php echo number_format($item['price'], 2); ?></p>

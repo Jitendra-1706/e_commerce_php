@@ -55,7 +55,7 @@ include 'includes/db_connect.php';
                 </tr>
             </tbody>
         </table>
-        <a href="user/checkout.php" class="btn btn-primary">Proceed to Checkout</a>
+        <a href="user/checkout.php" class="btn btn-primary mb-5">Proceed to Checkout</a>
     <?php endif; ?>
 </div>
 
