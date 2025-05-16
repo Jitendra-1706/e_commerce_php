@@ -12,6 +12,7 @@ $result = mysqli_query($con, $sql);
 ?>
 <?php include '../includes/mode.php'; ?>
 <link rel="stylesheet" href="../assets/css/admin_bar.css">
+<link rel="shortcut icon" href="../assets/images/logos/logo2.png" type="image/x-icon">
 
 <div class="d-flex">
     <?php include '../includes/admin_sidebar.php'; ?>
@@ -35,9 +36,9 @@ $result = mysqli_query($con, $sql);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php 
+                    <?php
                     $serial = 1; // Start serial number
-                    while ($row = mysqli_fetch_assoc($result)): 
+                    while ($row = mysqli_fetch_assoc($result)):
                         $imagePath = "../assets/images/" . htmlspecialchars($row['image']);
                         $imageExists = file_exists($imagePath);
                     ?>
@@ -56,10 +57,10 @@ $result = mysqli_query($con, $sql);
                             </td>
                             <td>
                                 <a href="edit_product.php?id=<?= $row['product_id'] ?>" class="btn btn-sm btn-warning">Edit</a>
-                                <a href="delete_product.php?id=<?= $row['product_id'] ?>" 
-                                   class="btn btn-sm btn-danger" 
-                                   onclick="return confirm('Are you sure you want to delete this product?');">
-                                   Delete
+                                <a href="delete_product.php?id=<?= $row['product_id'] ?>"
+                                    class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete this product?');">
+                                    Delete
                                 </a>
                             </td>
                         </tr>

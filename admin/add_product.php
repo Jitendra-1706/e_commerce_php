@@ -25,12 +25,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // 3. Handle image uploads with full relative path
-    function uploadImage($input_name, $upload_dir) {
+    function uploadImage($input_name, $upload_dir)
+    {
         if (!empty($_FILES[$input_name]['name'])) {
             $filename = basename($_FILES[$input_name]['name']);
             $target_path = $upload_dir . $filename;
             move_uploaded_file($_FILES[$input_name]['tmp_name'], $target_path);
-            return $folder_name.'/'.$filename; // save relative path
+            return $folder_name . '/' . $filename; // save relative path
         }
         return null;
     }
@@ -55,83 +56,87 @@ $categories = $con->query("SELECT * FROM categories");
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Add Product</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <?php include '../includes/mode.php'; ?>
     <link rel="stylesheet" href="../assets/css/admin_bar.css">
-    
+    <link rel="shortcut icon" href="../assets/images/logos/logo2.png" type="image/x-icon">
+
 </head>
+
 <body class="bg-light">
 
-<div class="d-flex">
-    <?php include '../includes/admin_sidebar.php'; ?>
-    <div class="flex-grow-1 p-4" style="margin-left: 250px;">
-        <div class="container mt-5">
-            <h2 class="mb-4">Add New Product</h2>
-            <form method="post" enctype="multipart/form-data" class="card p-4 shadow-sm bg-white rounded">
-                <div class="mb-3">
-                    <label class="form-label">Product Name</label>
-                    <input type="text" name="name" class="form-control" required>
-                </div>
+    <div class="d-flex">
+        <?php include '../includes/admin_sidebar.php'; ?>
+        <div class="flex-grow-1 p-4" style="margin-left: 250px;">
+            <div class="container mt-5">
+                <h2 class="mb-4">Add New Product</h2>
+                <form method="post" enctype="multipart/form-data" class="card p-4 shadow-sm bg-white rounded">
+                    <div class="mb-3">
+                        <label class="form-label">Product Name</label>
+                        <input type="text" name="name" class="form-control" required>
+                    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Description</label>
-                    <textarea name="description" class="form-control" rows="3" required></textarea>
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea name="description" class="form-control" rows="3" required></textarea>
+                    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Price (₹)</label>
-                    <input type="number" name="price" step="0.01" class="form-control" required>
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label">Price (₹)</label>
+                        <input type="number" name="price" step="0.01" class="form-control" required>
+                    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Stock</label>
-                    <input type="number" name="stock" class="form-control" required>
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label">Stock</label>
+                        <input type="number" name="stock" class="form-control" required>
+                    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Category</label>
-                    <select name="category_id" class="form-select" required>
-                        <option value="">Select Category</option>
-                        <?php while ($row = $categories->fetch_assoc()): ?>
-                            <option value="<?= $row['category_id'] ?>"><?= htmlspecialchars($row['name']) ?></option>
-                        <?php endwhile; ?>
-                    </select>
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label">Category</label>
+                        <select name="category_id" class="form-select" required>
+                            <option value="">Select Category</option>
+                            <?php while ($row = $categories->fetch_assoc()): ?>
+                                <option value="<?= $row['category_id'] ?>"><?= htmlspecialchars($row['name']) ?></option>
+                            <?php endwhile; ?>
+                        </select>
+                    </div>
 
-                <!-- Image Uploads -->
-                <div class="mb-3">
-                    <label class="form-label">Main Image</label>
-                    <input type="file" name="image" class="form-control" accept="image/*" required>
-                </div>
+                    <!-- Image Uploads -->
+                    <div class="mb-3">
+                        <label class="form-label">Main Image</label>
+                        <input type="file" name="image" class="form-control" accept="image/*" required>
+                    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Second Image</label>
-                    <input type="file" name="image2" class="form-control" accept="image/*">
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label">Second Image</label>
+                        <input type="file" name="image2" class="form-control" accept="image/*">
+                    </div>
 
-                <div class="mb-3">
-                    <label class="form-label">Third Image</label>
-                    <input type="file" name="image3" class="form-control" accept="image/*">
-                </div>
+                    <div class="mb-3">
+                        <label class="form-label">Third Image</label>
+                        <input type="file" name="image3" class="form-control" accept="image/*">
+                    </div>
 
-                <button type="submit" class="btn btn-success">Add Product</button>
-                <a href="products.php" class="btn btn-secondary">Cancel</a>
-            </form>
+                    <button type="submit" class="btn btn-success">Add Product</button>
+                    <a href="products.php" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<script>
-    if (localStorage.getItem("theme") === "dark") {
-        document.body.classList.add("dark-mode");
-    }
+    <script>
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+        }
 
-    if (localStorage.getItem("primaryColor")) {
-        document.documentElement.style.setProperty('--primary-color', localStorage.getItem("primaryColor"));
-    }
-</script>
+        if (localStorage.getItem("primaryColor")) {
+            document.documentElement.style.setProperty('--primary-color', localStorage.getItem("primaryColor"));
+        }
+    </script>
 
 </body>
+
 </html>

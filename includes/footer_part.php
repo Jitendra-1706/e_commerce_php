@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
 <footer class="bg-dark text-light pt-5 pb-4" id="about-us">
   <div class="container">
     <div class="row">
@@ -39,11 +41,11 @@
       <div class="col-md-3 col-sm-6 mb-4">
         <h5 class="text-uppercase mb-3">Follow Us</h5>
         <div class="d-flex gap-3">
-          <a href="#" class="text-light fs-5" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-          <a href="#" class="text-light fs-5" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="text-light fs-5" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="text-light fs-5" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-          <a href="#" class="text-light fs-5" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="text-white fs-5" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-white fs-5" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="text-white fs-5" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-white fs-5" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" class="text-white fs-5" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
         </div>
       </div>
 

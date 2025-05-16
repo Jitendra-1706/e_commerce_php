@@ -22,6 +22,7 @@ $result = $stmt->get_result();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>My Wishlist</title>
@@ -29,6 +30,7 @@ $result = $stmt->get_result();
     <link rel="shortcut icon" href="./assets/images/logos/logo2.png" type="image/x-icon">
 
 </head>
+
 <body>
     <?php include 'includes/navbar.php'; ?>
 
@@ -57,4 +59,5 @@ $result = $stmt->get_result();
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

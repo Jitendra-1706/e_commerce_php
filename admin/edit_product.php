@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $price = $_POST["price"];
     $stock = $_POST["stock"];
     $category_id = $_POST["category_id"];
-    
+
     $image = $product['image'];
     if (!empty($_FILES['image']['name'])) {
         $image = $_FILES['image']['name'];
@@ -32,6 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Edit Product</title>
@@ -39,75 +40,78 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <?php include '../includes/mode.php'; ?>
     <link rel="stylesheet" href="../assets/css/admin_bar.css">
+    <link rel="shortcut icon" href="../assets/images/logos/logo2.png" type="image/x-icon">
 
 
 </head>
+
 <body>
 
-<div class="d-flex">
-    <?php include '../includes/admin_sidebar.php'; ?>
-    <div class="flex-grow-1 p-4" style="margin-left: 250px;">
-        <!-- Your main content goes here -->
-        <div class="d-flex">
-    <div class="container p-5">
-        <h2 class="mb-4">Edit Product</h2>
-        <form method="post" enctype="multipart/form-data" class="card p-4 shadow-sm">
-            <div class="mb-3">
-                <label class="form-label">Product Name</label>
-                <input type="text" name="name" class="form-control" value="<?= $product['name'] ?>" required>
+    <div class="d-flex">
+        <?php include '../includes/admin_sidebar.php'; ?>
+        <div class="flex-grow-1 p-4" style="margin-left: 250px;">
+            <!-- Your main content goes here -->
+            <div class="d-flex">
+                <div class="container p-5">
+                    <h2 class="mb-4">Edit Product</h2>
+                    <form method="post" enctype="multipart/form-data" class="card p-4 shadow-sm">
+                        <div class="mb-3">
+                            <label class="form-label">Product Name</label>
+                            <input type="text" name="name" class="form-control" value="<?= $product['name'] ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea name="description" class="form-control" rows="3" required><?= $product['description'] ?></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Price</label>
+                            <input type="number" name="price" step="0.01" class="form-control" value="<?= $product['price'] ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Stock</label>
+                            <input type="number" name="stock" class="form-control" value="<?= $product['stock'] ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Category</label>
+                            <select name="category_id" class="form-select" required>
+                                <?php while ($row = $categories->fetch_assoc()): ?>
+                                    <option value="<?= $row['category_id'] ?>" <?= $product['category_id'] == $row['category_id'] ? 'selected' : '' ?>>
+                                        <?= $row['name'] ?>
+                                    </option>
+                                <?php endwhile; ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Current Image</label><br>
+                            <img src="../assets/images/<?= $product['image'] ?>" width="100">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Change Image</label>
+                            <input type="file" name="image" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Product</button>
+                        <a href="products.php" class="btn btn-secondary">Cancel</a>
+                    </form>
+                </div>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Description</label>
-                <textarea name="description" class="form-control" rows="3" required><?= $product['description'] ?></textarea>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Price</label>
-                <input type="number" name="price" step="0.01" class="form-control" value="<?= $product['price'] ?>" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Stock</label>
-                <input type="number" name="stock" class="form-control" value="<?= $product['stock'] ?>" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Category</label>
-                <select name="category_id" class="form-select" required>
-                    <?php while ($row = $categories->fetch_assoc()): ?>
-                        <option value="<?= $row['category_id'] ?>" <?= $product['category_id'] == $row['category_id'] ? 'selected' : '' ?>>
-                            <?= $row['name'] ?>
-                        </option>
-                    <?php endwhile; ?>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Current Image</label><br>
-                <img src="../assets/images/<?= $product['image'] ?>" width="100">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Change Image</label>
-                <input type="file" name="image" class="form-control">
-            </div>
-            <button type="submit" class="btn btn-primary">Update Product</button>
-            <a href="products.php" class="btn btn-secondary">Cancel</a>
-        </form>
+        </div>
     </div>
-</div>
-    </div>
-</div>
-
-  
 
 
 
-<script>
-    if (localStorage.getItem("theme") === "dark") {
-        document.body.classList.add("dark-mode");
-    }
 
-    if (localStorage.getItem("primaryColor")) {
-        document.documentElement.style.setProperty('--primary-color', localStorage.getItem("primaryColor"));
-    }
-</script>
+
+    <script>
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+        }
+
+        if (localStorage.getItem("primaryColor")) {
+            document.documentElement.style.setProperty('--primary-color', localStorage.getItem("primaryColor"));
+        }
+    </script>
 
 
 </body>
+
 </html>

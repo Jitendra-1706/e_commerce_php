@@ -18,4 +18,3 @@ if (mysqli_stmt_execute($stmt)) {
 }
 
 mysqli_close($con);
-?>

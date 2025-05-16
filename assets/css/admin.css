@@ -15,7 +15,7 @@
     padding: 20px;
     background: var(--card-bg);
     border-radius: 12px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: background 0.3s ease;
 }
 
@@ -28,6 +28,7 @@
     font-size: 24px;
     font-weight: bold;
 }
+
 :root {
     --bg: #ffffff;
     --text: #000000;
@@ -45,4 +46,3 @@ body {
     color: var(--text);
     transition: background-color 0.3s, color 0.3s;
 }
-

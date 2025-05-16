@@ -4,6 +4,7 @@
 <?php include '../includes/mode.php'; ?>
 
 <link rel="stylesheet" href="../assets/css/admin_bar.css">
+<link rel="shortcut icon" href="../assets/images/logos/logo2.png" type="image/x-icon">
 
 <div class="dashboard">
     <h1>Unicart Admin Dashboard</h1>
@@ -12,9 +13,9 @@
             <h2>Total Products</h2>
             <p>
                 <?php
-                    $result = $con->query("SELECT COUNT(*) AS total FROM products");
-                    $data = $result->fetch_assoc();
-                    echo $data['total'];
+                $result = $con->query("SELECT COUNT(*) AS total FROM products");
+                $data = $result->fetch_assoc();
+                echo $data['total'];
                 ?>
             </p>
         </div>
@@ -22,9 +23,9 @@
             <h2>Total Orders</h2>
             <p>
                 <?php
-                    $result = $con->query("SELECT COUNT(*) AS total FROM orders");
-                    $data = $result->fetch_assoc();
-                    echo $data['total'];
+                $result = $con->query("SELECT COUNT(*) AS total FROM orders");
+                $data = $result->fetch_assoc();
+                echo $data['total'];
                 ?>
             </p>
         </div>
@@ -32,9 +33,9 @@
             <h2>Total Users</h2>
             <p>
                 <?php
-                    $result = $con->query("SELECT COUNT(*) AS total FROM users");
-                    $data = $result->fetch_assoc();
-                    echo $data['total'];
+                $result = $con->query("SELECT COUNT(*) AS total FROM users");
+                $data = $result->fetch_assoc();
+                echo $data['total'];
                 ?>
             </p>
         </div>
@@ -42,9 +43,9 @@
             <h2>Total Income</h2>
             <p>
                 <?php
-                    $result = $con->query("SELECT SUM(total_price) AS total_income FROM orders");
-                    $data = $result->fetch_assoc();
-                    echo '₹' . number_format($data['total_income'], 2);
+                $result = $con->query("SELECT SUM(total_price) AS total_income FROM orders");
+                $data = $result->fetch_assoc();
+                echo '₹' . number_format($data['total_income'], 2);
                 ?>
             </p>
         </div>

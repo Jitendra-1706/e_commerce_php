@@ -70,17 +70,20 @@ mail($to, $subject, $message, $headers);
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Cash on Delivery</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 </head>
+
 <body>
-<div class="container mt-5">
-    <h4>Cash on Delivery</h4>
-    <p>Total: ₹<?= number_format($total, 2) ?></p>
-    <form method="post">
-        <button type="submit" class="btn btn-warning">Place Order with COD</button>
-    </form>
-</div>
+    <div class="container mt-5">
+        <h4>Cash on Delivery</h4>
+        <p>Total: ₹<?= number_format($total, 2) ?></p>
+        <form method="post">
+            <button type="submit" class="btn btn-warning">Place Order with COD</button>
+        </form>
+    </div>
 </body>
+
 </html>

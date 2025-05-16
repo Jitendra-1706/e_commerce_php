@@ -4,6 +4,7 @@ session_start();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,6 +16,7 @@ session_start();
     <!-- Boxicons -->
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
 </head>
+
 <body>
     <div class="l-form">
         <div class="shape1"></div>
@@ -27,7 +29,8 @@ session_start();
                 <h1 class="form__title">Welcome Admin</h1>
 
                 <?php if (isset($_SESSION['error'])): ?>
-                    <div class="alert alert-danger"><?= $_SESSION['error']; unset($_SESSION['error']); ?></div>
+                    <div class="alert alert-danger"><?= $_SESSION['error'];
+                                                    unset($_SESSION['error']); ?></div>
                 <?php endif; ?>
 
                 <div class="form__div form__div-one">
@@ -54,10 +57,12 @@ session_start();
     <!-- JS -->
     <script>
         const inputs = document.querySelectorAll(".form__input");
+
         function addfocus() {
             let parent = this.parentNode.parentNode;
             parent.classList.add("focus");
         }
+
         function remfocus() {
             let parent = this.parentNode.parentNode;
             if (this.value === "") {
@@ -70,4 +75,5 @@ session_start();
         });
     </script>
 </body>
+
 </html>

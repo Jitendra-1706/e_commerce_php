@@ -10,13 +10,14 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unicart Admin Dashboard</title>
     <link rel="stylesheet" href="../assets/css/admin.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
+    <link rel="shortcut icon" href="../assets/images/logos/logo2.png" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -108,12 +109,12 @@ if (!isset($_SESSION['admin_logged_in'])) {
             text-align: center;
             color: #fff;
         }
-
     </style>
- 
 
-<?php include('../includes/header.php'); ?>
+
+    <?php include('../includes/header.php'); ?>
 </head>
+
 <body>
     <div class="sidebar">
         <h2>Unicart</h2>
@@ -135,122 +136,121 @@ if (!isset($_SESSION['admin_logged_in'])) {
 
 
 
-<div class="dashboard" id="admin_dashboard">
-    <h1 class="mb-4">Unicart Admin Dashboard</h1>
-    <div class="stats-grid">
-        <div class="card bg-primary text-white">
-            <h2>Total Products</h2>
-            <p>
-                <?php
-                    $result = $con->query("SELECT COUNT(*) AS total FROM products");
-                    $data = $result->fetch_assoc();
-                    echo $data['total'];
-                ?>
-            </p>
+        <div class="dashboard" id="admin_dashboard">
+            <h1 class="mb-4">Unicart Admin Dashboard</h1>
+            <div class="stats-grid">
+                <div class="card bg-primary text-white">
+                    <h2>Total Products</h2>
+                    <p>
+                        <?php
+                        $result = $con->query("SELECT COUNT(*) AS total FROM products");
+                        $data = $result->fetch_assoc();
+                        echo $data['total'];
+                        ?>
+                    </p>
+                </div>
+                <div class="card bg-secondary text-white">
+                    <h2>Total Orders</h2>
+                    <p>
+                        <?php
+                        $result = $con->query("SELECT COUNT(*) AS total FROM orders");
+                        $data = $result->fetch_assoc();
+                        echo $data['total'];
+                        ?>
+                    </p>
+                </div>
+                <div class="card bg-success text-white">
+                    <h2>Total Users</h2>
+                    <p>
+                        <?php
+                        $result = $con->query("SELECT COUNT(*) AS total FROM users");
+                        $data = $result->fetch_assoc();
+                        echo $data['total'];
+                        ?>
+                    </p>
+                </div>
+                <div class="card bg-info text-white">
+                    <h2>Total Income</h2>
+                    <p>
+                        <?php
+                        $result = $con->query("SELECT SUM(total_price) AS total_income FROM orders");
+                        $data = $result->fetch_assoc();
+                        echo '₹' . number_format($data['total_income'], 2);
+                        ?>
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="card bg-secondary text-white">
-            <h2>Total Orders</h2>
-            <p>
-                <?php
-                    $result = $con->query("SELECT COUNT(*) AS total FROM orders");
-                    $data = $result->fetch_assoc();
-                    echo $data['total'];
-                ?>
-            </p>
-        </div>
-        <div class="card bg-success text-white">
-            <h2>Total Users</h2>
-            <p>
-                <?php
-                    $result = $con->query("SELECT COUNT(*) AS total FROM users");
-                    $data = $result->fetch_assoc();
-                    echo $data['total'];
-                ?>
-            </p>
-        </div>
-        <div class="card bg-info text-white">
-            <h2>Total Income</h2>
-            <p>
-                <?php
-                    $result = $con->query("SELECT SUM(total_price) AS total_income FROM orders");
-                    $data = $result->fetch_assoc();
-                    echo '₹' . number_format($data['total_income'], 2);
-                ?>
-            </p>
-        </div>
-    </div>
-</div>
 
-<canvas id="incomeChart" style="max-width: 600px; margin-top: 40px;"></canvas>
+        <canvas id="incomeChart" style="max-width: 600px; margin-top: 40px;"></canvas>
 
 
-    <script>
-        function toggleTheme() {
-            const html = document.documentElement;
-            const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-            html.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-        }
-
-        // Load theme from localStorage
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-        });
-
-        
-    </script>
-
-<?php
-$monthlyData = $con->query("SELECT DATE_FORMAT(order_date, '%M') AS month, SUM(total_price) AS income FROM orders GROUP BY MONTH(order_date)");
-$months = [];
-$income = [];
-while ($row = $monthlyData->fetch_assoc()) {
-    $months[] = $row['month'];
-    $income[] = $row['income'];
-}
-?>
-
-<script>
-const ctx = document.getElementById('incomeChart').getContext('2d');
-const incomeChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: <?php echo json_encode($months); ?>,
-        datasets: [{
-            label: 'Monthly Income (₹)',
-            data: <?php echo json_encode($income); ?>,
-            backgroundColor: '#ff6600',
-            borderRadius: 5
-        }]
-    },
-    options: {
-        responsive: true,
-        scales: {
-            y: {
-                beginAtZero: true
+        <script>
+            function toggleTheme() {
+                const html = document.documentElement;
+                const newTheme = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
             }
+
+            // Load theme from localStorage
+            document.addEventListener('DOMContentLoaded', () => {
+                const savedTheme = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            });
+        </script>
+
+        <?php
+        $monthlyData = $con->query("SELECT DATE_FORMAT(order_date, '%M') AS month, SUM(total_price) AS income FROM orders GROUP BY MONTH(order_date)");
+        $months = [];
+        $income = [];
+        while ($row = $monthlyData->fetch_assoc()) {
+            $months[] = $row['month'];
+            $income[] = $row['income'];
         }
-    }
-});
-</script>
+        ?>
+
+        <script>
+            const ctx = document.getElementById('incomeChart').getContext('2d');
+            const incomeChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: <?php echo json_encode($months); ?>,
+                    datasets: [{
+                        label: 'Monthly Income (₹)',
+                        data: <?php echo json_encode($income); ?>,
+                        backgroundColor: '#ff6600',
+                        borderRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
 
 
 
 
 
 
-<script>
-    if (localStorage.getItem("theme") === "dark") {
-        document.body.classList.add("dark-mode");
-    }
+        <script>
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark-mode");
+            }
 
-    if (localStorage.getItem("primaryColor")) {
-        document.documentElement.style.setProperty('--primary-color', localStorage.getItem("primaryColor"));
-    }
-</script>
+            if (localStorage.getItem("primaryColor")) {
+                document.documentElement.style.setProperty('--primary-color', localStorage.getItem("primaryColor"));
+            }
+        </script>
 
-<?php include('../includes/footer.php'); ?>
+        <?php include('../includes/footer.php'); ?>
 
 </body>
+
 </html>

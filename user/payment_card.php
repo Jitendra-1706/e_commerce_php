@@ -81,23 +81,26 @@ mail($to, $subject, $message, $headers);
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Pay by Card</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 </head>
+
 <body>
-<div class="container mt-5">
-    <h4>Card Payment</h4>
-    <p>Total: ₹<?= number_format($total, 2) ?></p>
+    <div class="container mt-5">
+        <h4>Card Payment</h4>
+        <p>Total: ₹<?= number_format($total, 2) ?></p>
 
-    <?php if (isset($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>
+        <?php if (isset($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>
 
-    <form method="post">
-        <input type="text" name="card_no" class="form-control mb-2" placeholder="Card Number" required>
-        <input type="text" name="expiry" class="form-control mb-2" placeholder="MM/YY" required>
-        <input type="text" name="cvv" class="form-control mb-2" placeholder="CVV" required>
-        <button type="submit" class="btn btn-primary">Pay & Place Order</button>
-    </form>
-</div>
+        <form method="post">
+            <input type="text" name="card_no" class="form-control mb-2" placeholder="Card Number" required>
+            <input type="text" name="expiry" class="form-control mb-2" placeholder="MM/YY" required>
+            <input type="text" name="cvv" class="form-control mb-2" placeholder="CVV" required>
+            <button type="submit" class="btn btn-primary">Pay & Place Order</button>
+        </form>
+    </div>
 </body>
+
 </html>

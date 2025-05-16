@@ -74,19 +74,22 @@ mail($to, $subject, $message, $headers);
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Pay by UPI</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
 </head>
+
 <body>
-<div class="container mt-5">
-    <h4>UPI Payment</h4>
-    <p>Total: ₹<?= number_format($total, 2) ?></p>
-    <?php if (isset($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>
-    <form method="post">
-        <input type="text" name="upi_id" class="form-control mb-3" placeholder="Enter UPI ID (e.g., user@bank)" required>
-        <button type="submit" class="btn btn-success">Pay & Place Order</button>
-    </form>
-</div>
+    <div class="container mt-5">
+        <h4>UPI Payment</h4>
+        <p>Total: ₹<?= number_format($total, 2) ?></p>
+        <?php if (isset($error)) echo "<div class='alert alert-danger'>$error</div>"; ?>
+        <form method="post">
+            <input type="text" name="upi_id" class="form-control mb-3" placeholder="Enter UPI ID (e.g., user@bank)" required>
+            <button type="submit" class="btn btn-success">Pay & Place Order</button>
+        </form>
+    </div>
 </body>
+
 </html>

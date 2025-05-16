@@ -30,7 +30,7 @@ $result = $con->query($query);
 <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 <?php include '../includes/mode.php'; ?>
 <link rel="stylesheet" href="../assets/css/admin_bar.css">
-
+<link rel="shortcut icon" href="../assets/images/logos/logo2.png" type="image/x-icon">
 
 <div class="d-flex">
     <?php include '../includes/admin_sidebar.php'; ?>
@@ -76,7 +76,9 @@ $result = $con->query($query);
                                 </tr>
                             <?php endwhile; ?>
                         <?php else: ?>
-                            <tr><td colspan="6">No users found.</td></tr>
+                            <tr>
+                                <td colspan="6">No users found.</td>
+                            </tr>
                         <?php endif; ?>
                     </tbody>
                 </table>
@@ -84,8 +86,6 @@ $result = $con->query($query);
         </div>
     </div>
 </div>
-
-
 
 <script>
     if (localStorage.getItem("theme") === "dark") {

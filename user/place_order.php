@@ -41,4 +41,3 @@ $_SESSION['address_saved'] = false;
 // Redirect to confirmation
 header("Location: checkout.php?order=success");
 exit();
-?>

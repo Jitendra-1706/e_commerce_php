@@ -49,13 +49,14 @@ body {
     transition: .7s ease;
     transition-delay: calc(.1s * var(--j));
 
-  }
-  .wrapper.active .form-box.login .animation {
+}
+
+.wrapper.active .form-box.login .animation {
     transform: translateX(-120%);
     opacity: 0;
     filter: blur(10px);
     transition-delay: calc(.1s* var(--i));
-  }
+}
 
 .wrapper .form-box.register {
     right: 0;
@@ -68,19 +69,20 @@ body {
     padding-bottom: 15px;
 } */
 
-.wrapper .form-box.register .animation{
-transform: translateX(120%);
-opacity: 0;
-filter: blur(10px);
-transition: .7s ease;
-transition-delay: calc(.1s * var(--j));
+.wrapper .form-box.register .animation {
+    transform: translateX(120%);
+    opacity: 0;
+    filter: blur(10px);
+    transition: .7s ease;
+    transition-delay: calc(.1s * var(--j));
 
 }
-.wrapper.active .form-box.register .animation{
-transform: translateX(0);
-opacity: 1;
-filter: blur(0);
-transition-delay: calc(.1s* var(--i));
+
+.wrapper.active .form-box.register .animation {
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0);
+    transition-delay: calc(.1s* var(--i));
 
 }
 
@@ -219,18 +221,19 @@ transition-delay: calc(.1s* var(--i));
 }
 
 .wrapper .info-text.login .animation {
-  transform: translateX(0);
-  opacity: 1;
-  filter: blur(0);
-  transition: .7s ease;
-  transition-delay: calc(.1s * var(--j));
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0);
+    transition: .7s ease;
+    transition-delay: calc(.1s * var(--j));
 
 }
+
 .wrapper.active .info-text.login .animation {
-  transform: translateX(120%);
-  opacity: 0;
-  filter: blur(10px);
-  transition-delay: calc(.1s * var(--i));
+    transform: translateX(120%);
+    opacity: 0;
+    filter: blur(10px);
+    transition-delay: calc(.1s * var(--i));
 }
 
 .wrapper .info-text.register {
@@ -240,15 +243,16 @@ transition-delay: calc(.1s* var(--i));
     pointer-events: none;
     /* display: none; */
 }
-.wrapper .info-text.register .animation{
+
+.wrapper .info-text.register .animation {
     transform: translateX(-120%);
     opacity: 0;
     filter: blur(10px);
     transition: .7s ease;
     transition-delay: calc(.1s * var(--j));
-    }
+}
 
-.wrapper.active .info-text.register .animation{
+.wrapper.active .info-text.register .animation {
     transform: translateX(0);
     opacity: 1;
     filter: blur(0);
@@ -281,11 +285,13 @@ transition-delay: calc(.1s* var(--i));
     transition: 1.5s ease;
     transition-delay: 1.6s;
 }
+
 .wrapper.active .bg-animate {
     transform: rotate(0deg) skewY(0deg);
     transition-delay: .5s;
 
 }
+
 .wrapper .bg-animate2 {
     position: absolute;
     top: 100%;
@@ -305,5 +311,3 @@ transition-delay: calc(.1s* var(--i));
     transition-delay: 1.2s;
 
 }
-
-
