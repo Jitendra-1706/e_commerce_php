@@ -91,19 +91,42 @@ if ($check && $check->num_rows > 0) {
             <?php endif; ?>
         </div>
 
-        <!-- Step 3 -->
-        <div class="step" id="step3">
-            <h4>Step 3: Payment</h4>
-            <form method="POST" action="place_order.php">
-                <input type="hidden" name="total_price" value="<?php echo $total_price; ?>">
-                <label>Select Payment Method:</label>
-                <select name="payment_method" class="form-control mb-3" required>
-                    <option value="COD">Cash on Delivery</option>
-                    <option value="Online">Online (Dummy)</option>
-                </select>
-                <button type="submit" class="btn btn-success">Place Order</button>
-            </form>
+<!-- Step 3 -->
+<div class="step" id="step3">
+    <h4>Step 3: Payment</h4>
+    <form method="POST" action="place_order.php">
+        <input type="hidden" name="total_price" value="<?php echo $total_price; ?>">
+
+        <label>Select Payment Method:</label>
+        <select name="payment_method" id="payment_method" class="form-control mb-3 mt-3" required onchange="handlePaymentChange()">
+            <option value="">-- Select Payment Method --</option>
+            <option value="COD">Cash on Delivery</option>
+            <option value="UPI">UPI</option>
+            <option value="Card">Credit/Debit Card</option>
+        </select>
+
+        <!-- UPI Section -->
+        <div id="upi_section" style="display: none;">
+            <label>Enter UPI ID:</label>
+            <input type="text" name="upi_id" class="form-control mb-3 mt-2" placeholder="e.g., user@bank">
+            <p>OR scan this QR code:</p>
+            <img src="../assets/images/logos/qr_code.png" alt="UPI QR" style="max-width: 200px;">
         </div>
+
+        <!-- Card Section -->
+        <div id="card_section" style="display: none;">
+            <label>Card Number:</label>
+            <input type="text" name="card_number" class="form-control mb-2" placeholder="XXXX XXXX XXXX XXXX">
+            <label>Expiry Date:</label>
+            <input type="text" name="expiry_date" class="form-control mb-2" placeholder="MM/YY">
+            <label>CVV:</label>
+            <input type="text" name="cvv" class="form-control mb-3" placeholder="CVV">
+        </div>
+
+        <button type="submit" class="btn btn-success mt-3">Place Order</button>
+    </form>
+</div>
+
 
         <!-- Step 4 -->
         <?php if (isset($_GET['order']) && $_GET['order'] == 'success'): ?>
@@ -126,6 +149,15 @@ if ($check && $check->num_rows > 0) {
             document.getElementById('step' + step).classList.add('active');
         }
     </script>
+
+    <script>
+    function handlePaymentChange() {
+        const method = document.getElementById('payment_method').value;
+        document.getElementById('upi_section').style.display = (method === 'UPI') ? 'block' : 'none';
+        document.getElementById('card_section').style.display = (method === 'Card') ? 'block' : 'none';
+    }
+</script>
+
 
     <?php include('../includes/footer.php'); ?>
 </body>
